@@ -1,0 +1,168 @@
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/manage.css">
+		<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body style="background:#000;">
+		<header class="mui-bar mui-bar-nav" style="background:#1A1613;color:#fff;" >
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">站点管理</h1>
+		    <a href="#popover" class="mui-icon mui-icon-search mui-pull-right"  id="search"></a>
+		    <a href="" class="mui-icon mui-icon-compose mui-pull-right"  id="deta" style="margin-right:5px;"></a>
+		</header>
+		<div class="mui-row" id="cam">
+					<!--<div class="mui-col-sm-2 mui-col-xs-2">
+						<span>编号</span>
+					</div>-->
+					<div class="mui-col-sm-4 mui-col-xs-4">
+						<span>地址</span>
+					</div>
+					<div class="mui-col-sm-2 mui-col-xs-2">
+						<span>容量</span>
+					</div>
+					<div class="mui-col-sm-2 mui-col-xs-2">
+						<span>上限</span>
+					</div>
+					<div class="mui-col-sm-2 mui-col-xs-2">
+						<span>下限</span>
+					</div>
+					<div class="mui-col-sm-2 mui-col-xs-2">
+						<span>状态</span>
+					</div>
+			</div>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<!--数据列表-->
+			<ul id="cont" class="mui-scroll">
+				
+			</ul>
+			
+			<!--搜索-->
+			<div class="mui-input-group" id="research">
+				<!--搜索-->
+			    <div class="mui-input-row">
+			      <label style="position:relative;">站点名称</label>
+			        <input type="text" class="mui-input-clear" placeholder="请输入站点名称"
+			          id="station_name">
+			        <a href="#" class="mui-icon iconfont icon-saoma2" id="came" style="color:#fff;font-size:30px;display: block;width:30px;height:30px;position:absolute;top:5px;right:15px;color:#ccc;"></a>
+			    </div>
+			    <a type="button" class="mui-btn mui-btn-primary btn-search" id="sear" href="#popover">搜索</a>
+			</div>
+		</div>
+	  <script type="text/javascript">
+	  		var str = '';
+	  		mui.ajax('https://sys.ibike365.cn/umb/webAppStationShow',{
+					type:'get',
+					dataType:'json',
+					data:{projectId:0},
+					success:function(data){
+						plus.nativeUI.closeWaiting();
+						var items = data.data;
+						var cont = document.getElementById('cont');
+						var li = document.createElement('li');
+						for(var i=0;i<items.length;i++){
+							str+='<div class="mui-row cc"><div class="mui-col-sm-4 mui-col-xs-4"><span>'+items[i].stationAddress+
+							'</span></div><div class="mui-col-sm-2 mui-col-xs-2"><span>'+items[i].stationCount+
+							'</span></div><div class="mui-col-sm-2 mui-col-xs-2"><span>'+items[i].stationToplimit+
+							'</span></div><div class="mui-col-sm-2 mui-col-xs-2"><span>'+items[i].stationLowerlimit+
+							'</span></div><div class="mui-col-sm-2 mui-col-xs-2"><span>'+items[i].stationState+'</span></div></div>'	
+						}
+						li.innerHTML=str;
+						cont.insertBefore(li, cont.firstChild);
+						li.className='mui-table-view';
+						mui.toast('数据加载完毕');
+					}
+//					timeout:5000
+				})
+	  		mui.init({
+			　　pullRefresh: {
+			　　container: '#pullrefresh',
+			　　up: {
+					style:'circle',
+					color:'#2BD009',
+					height:'150px',
+					range:'100px',
+					offset:'60px',
+					auto:false,
+			　　　　contentrefresh: '正在加载...',
+				    contentnomore:'没有更多数据了',
+			　　　　callback: pullupRefresh
+			　　　　},
+				down:{
+					contentrefresh: '正在加载',
+					contentnomore:'没有更多数据了',
+					callback:pulldownRefresh
+				}
+				
+			　　}
+			});
+			//下拉刷新
+			function pulldownRefresh(){
+				mui.toast('数据加载完毕');
+				
+			}
+			//上拉加载的回调函数
+			function pullupRefresh(){
+				mui.toast('数据初始化成功')
+				
+			}
+	  		//初始化
+		  	mui.plusReady(function(){
+		  			plus.nativeUI.showWaiting( "数据加载中..." );
+		  			//调用相机
+		  			document.getElementById('came').addEventListener('tap',function() {
+		  				var came = plus.camera.getCamera();
+		  				came.captureImage(function(){
+		  					alert('调用相机成功')
+		  				});
+		  			})
+		  		})
+		  		var flag=false;
+		  		//监听ul下的点击事件
+		  		document.getElementById('cont').addEventListener('tap',function(e){
+		  			var lis = document.getElementsByClassName('mui-row');
+		  			
+		  			for(var i=1;i<lis.length;i++){
+		  				lis[i].className='mui-row';
+		  			}
+					var par = e.target.parentNode.parentNode || e.target.parent || e.target;
+					if(par.className=='mui-row'){
+						par.className='active mui-row';
+					}
+					
+		  		})
+		  		
+		  		//编辑
+		  		document.getElementById('deta').addEventListener('tap',function(){
+		  			//获取当前点到到项
+		  			
+		  		})
+		  		//搜索窗口
+		  		document.getElementById('search').addEventListener('tap',function(){
+		  			if(flag){
+		  				document.getElementById('research').style.top='-200px';
+		  				flag=false;
+		  			}else{
+		  				document.getElementById('research').style.top='45px';
+		  				flag=true;
+		  			}
+		  		})
+		  		//搜索功能
+		  		document.getElementById('sear').addEventListener('tap',function(){
+		  			var name = document.getElementById('station_name').value;
+		  			if(!name){
+		  				mui.toast('请输入要搜索的站点');
+		  				return;
+		  			}
+		  			
+		  		});
+	  		
+	  </script>
+	</body>
+</html>

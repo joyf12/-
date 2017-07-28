@@ -1,0 +1,31 @@
+#header{background-image: url(../images/bg.png);height: 50px;}
+#header #title{color: white;font-size: 18px;line-height: 50px;}
+.head a{color: white;line-height: 30px;}
+/*li{background: wheat;margin-bottom: 2px;}*/
+.mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after{
+			color: black;}
+.mui-btn{display: block;margin: 0 auto;margin-top: 5px;}
+.mui-input-group{position: absolute;top: -50px;width: 98%;left: 1%;z-index: 100;
+				 display: none;}
+.mui-table-view li p{
+    		padding-left: 20px;
+    		padding-top: 10px;
+    		font-size: 15px;
+    	}
+.mui-table-view li p:first-child{
+	color: #3c4f5e;
+	font-size: 18px;
+	padding-left: 20px;
+	position: relative;
+}
+.mui-table-view li p:first-child span{
+	font-size: 15px;
+}
+.mui-table-view li p:first-child img{
+	position: absolute;
+	top: 10px;
+	left: -5px;
+}
+.mui-table-view li p:nth-child(2){
+	color: #e77c6e;
+}

@@ -1,0 +1,4 @@
+.mui-content {margin-top:10px;}
+.mui-content .mui-row div {text-align:center;}
+.mui-input-group{position:absolute;top:-100px;width: 100%;left: 0;z-index: 100;}
+#bcid {position:absolute;top:0px;}

@@ -1,0 +1,156 @@
+{
+	"index.html": {
+		"resources": [
+			"css/index.css",
+			"images/bg.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/user.jpg",
+			"fonts/mui.ttf",
+			"images/�\u0001\u000f�\u0007.png",
+			"images/\u0026�\u000f�\u0007.png/",
+			"images/{U.jpg",
+			"images/�\u0001\u000f�\u0007.png",
+			"images/\u0026�\u000f�\u0007.png/",
+			"images/{U.jpg",
+			"images/�\u0001\u000f�\u0007.png",
+			"images/\u0026�\u000f�\u0007.png/",
+			"images/{U.jpg",
+			"images/�\u0001\u000f�\u0007.png",
+			"images/\u0026�\u000f�\u0007.png/",
+			"images/{U.jpg",
+			"images/�\u0001\u000f�\u0007.png",
+			"images/\u0026�\u000f�\u0007.png/",
+			"images/{U.jpg",
+			"images/�\u0001\u000f�\u0007.png",
+			"images/\u0026�\u000f�\u0007.png/",
+			"images/�\u0001\u000f�\u0007.png",
+			"images/\u0026�\u000f�\u0007.png/",
+			"images/密码小图标.png",
+			"images/账号小图标.png/"
+		],
+		"refer": [
+			"index11.html",
+			"tab-webview-main.html",
+			"main.html"
+		]
+	},
+	"tab-webview-main.html": {
+		"resources": [
+			"tab-webview-subpage-about.html",
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"tab-webview-subpage-about.html",
+			"tab-webview-subpage-setting.html",
+			"tab-webview-subpage-chat.html",
+			"tab-webview-subpage-contact.html",
+			"tab-webview-about.html",
+			"a.html",
+			"tab-webvie-about.html"
+		]
+	},
+	"tab-webview-subpage-contact.html": {
+		"resources": [
+			"css/mui.min.css",
+			"js/mui.min.js"
+		],
+		"refer": []
+	},
+	"main.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"images/�uLb_r1_c1.jpg",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"fonts/iconfont.ttf",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"manage.html",
+			"ma.html",
+			"lock.html",
+			"umbmanage.html",
+			"userMana.html",
+			"scan.html"
+		]
+	},
+	"manage.html": {
+		"resources": [
+			"css/iconfont.css",
+			"fonts/iconfont.ttf",
+			"js/mui.js",
+			"css/manage.css",
+			"css/mui.min.css",
+			"js/vue.js",
+			"fonts/mui.ttf"
+		],
+		"refer": []
+	},
+	"ma.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.js",
+			"js/mui.min.js"
+		],
+		"refer": []
+	},
+	"lock.html": {
+		"resources": [
+			"css/mui.css",
+			"css/lock.css",
+			"js/mui.js",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"fonts/iconfont.ttf"
+		],
+		"refer": [
+			"scan.html",
+			"scan_list.html"
+		]
+	},
+	"umbmanage.html": {
+		"refer": [
+			"car.html",
+			"newCar.html"
+		]
+	},
+	"car.html": {
+		"resources": [
+			"css/car.css"
+		]
+	},
+	"newCar.html": {
+		"refer": [
+			"demand.html",
+			"sele.html"
+		]
+	},
+	"demand.html": {
+		"resources": [
+			"css/demand.css"
+		]
+	},
+	"scan.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"fonts/mui.ttf",
+			"js/mui.js",
+			"css/mui.css"
+		],
+		"refer": [
+			"scan_list.html"
+		]
+	},
+	"scan_list.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"css/mui.css",
+			"js/mui.js"
+		]
+	}
+}

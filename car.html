@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/car.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:#1A1613;color:#fff;" >
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">卡片查询</h1>
+		    <a href="#popover" class="mui-icon mui-icon-search mui-pull-right"  id="search"></a>
+		    <a href="" class="mui-icon mui-icon-compose mui-pull-right"  id="deta" style="margin-right:5px;"></a>
+		</header>
+		<div class="mui-scroll-wrapper">
+			    <div class="mui-scroll">
+			        <div class="mui-row">
+							<div class="mui-col-sm-3 mui-col-xs-3">
+								<span>用户卡号</span>
+							</div>
+							<div class="mui-col-sm-3 mui-col-xs-3">
+								<span>雨伞编号</span>
+							</div>
+							<div class="mui-col-sm-3 mui-col-xs-3">
+								<span>借伞时间</span>
+							</div>
+							<div class="mui-col-sm-3 mui-col-xs-3">
+								<span>状态</span>
+							</div>
+					</div>
+			    </div>
+			</div>
+		<div id="pullrefresh" class="mui-content">
+			
+			<!--<div class="mui-row">
+					<div class="mui-col-sm-3 mui-col-xs-3">
+						<span>用户卡号</span>
+					</div>
+					<div class="mui-col-sm-3 mui-col-xs-3">
+						<span>雨伞编号</span>
+					</div>
+					<div class="mui-col-sm-3 mui-col-xs-3">
+						<span>借伞时间</span>
+					</div>
+					<div class="mui-col-sm-3 mui-col-xs-3">
+						<span>状态</span>
+					</div>
+			</div>-->
+			
+			<!--搜索-->
+			<div class="mui-input-group" id="research">
+				
+				<!--搜索-->
+			    <div class="mui-input-row">
+			      <label style="position:relative;">站点名称</label>
+			        <input type="text" class="mui-input-clear" placeholder="请输入站点名称"
+			          id="station_name">
+			        <a href="#" class="mui-icon iconfont icon-saoma2" id="came" style="color:#fff;font-size:30px;display: block;width:30px;height:30px;position:absolute;top:5px;right:15px;color:#ccc;"></a>
+			    </div>
+			    <a type="button" class="mui-btn mui-btn-primary btn-search" id="sear" href="#popover">搜索</a>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var flag = true;
+			//搜索窗口
+		  	document.getElementById('search').addEventListener('tap',function(){
+		  		if(flag){
+		  			document.getElementById('research').style.top='-100px';
+		  			flag=false;
+		  		}else{
+		  			document.getElementById('research').style.top='45px';
+		  			flag=true;
+		  		}
+		  	})
+		</script>
+	</body>
+
+</html>

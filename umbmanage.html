@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">雨伞管理</h1>
+		</header>
+		<div class="mui-content">
+		    <ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="car">
+					<a href="#"> 
+						<span class="mui-icon mui-icon-search"></span>
+						<div class="mui-media-body">卡片查询</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="add">
+					<a href="#">
+						<span class="mui-icon mui-icon-personadd"></span>
+						<div class="mui-media-body">新用户开卡</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="user">
+					<a href="#">
+						<span class="mui-icon mui-icon-person"></span>
+						<div class="mui-media-body">已开用户卡</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="err">
+					<a href="#">
+						<span class="mui-icon mui-icon-chat"></span>
+						<div class="mui-media-body">雨伞异常管理</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){});
+			//卡片查询
+			document.getElementById('car').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'car.html',
+					id:'car'
+				})
+			})
+			//新用户开卡
+			document.getElementById('add').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'newCar.html',
+					id:'add'
+				})
+			})
+			//已开用户卡
+			document.getElementById('user').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'user.html',
+					id:'user'
+				})
+			})
+			//异常管理
+			document.getElementById('err').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'error.html',
+					id:'err'
+				})
+			})
+		</script>
+	</body>
+
+</html>

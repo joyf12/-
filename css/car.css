@@ -1,0 +1,3 @@
+.mui-scroll-wrapper .mui-scroll {background:#ff1613;padding-top:10px; color:#fff;position:fixed;top:44px;width:100%;z-index:10;}
+.mui-scroll-wrapper .mui-scroll div {text-align:center;overflow:hidden;-webkit-line-clamp:1;text-overflow:ellipsis;height:30px;line-height:30px;}
+.mui-input-group{position:absolute;top:-100px;right:0;width: 100%;left: 0px;z-index: 100;}

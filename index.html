@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<!--<meta http-equiv="Access-Control-Allow-Origin" content="">
+ 	<meta http-equiv="content-security-policy">-->
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/index.css" />
+    
+</head>
+<body  style="background:#1A1613">
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title"></h1>
+	</header>
+	<!--<div class="mui-content" id="defaultTab" style="background:url('https://thumbnail0.baidupcs.com/thumbnail/daff1b81a3db2a352907affc1726ede2?fid=3642656684-250528-388041925469879&time=1500087600&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-2y3CebPWi%2fsSJCkiU5TJx%2bi7880%3d&expires=8h&chkbd=0&chkv=0&dp-logid=4533473583019947972&dp-callid=0&size=c1138_u640&quality=90&vuk=3642656684&ft=image') no-repeat;background-size:100%;" >-->
+	<div id="img_div">
+	   	<img src="images/user.jpg" id="img_user" style="border:1px solid #ccc;border-radius:50%;"/>
+	</div>
+	<div class="mui-content" id="defaulstTab" style="background:transparent;">
+	    <form id="login-form" class="mui-input-group" style="padding-top:30%;background-color: #1A1613;">
+	    	<div class="mui-input-row">
+	    		<label><span class="mui-icon mui-icon-person"></span></label>
+	    		<input type="text" id="account" class="mui-input mui-input-clear" placeholder="账号" />
+	    	</div>
+	    	<div class="mui-input-row" style="margin-top:20px;background:#fff;opacity:0.5;">
+	    		<label><span class="mui-icon mui-icon-locked"</span></label>
+	    		<input type="password" id="password" class="mui-input mui-input-clear" placeholder="密码"/><label for=""></label>
+	    	</div>
+	    </form>
+	    <div class="mui-content-padded">
+	    	<button id="login" class="mui-btn mui-btn-block">登录</button>
+	    </div>
+	    <div class="link-area">
+	    	<a>法瑞纳共享雨伞</a>
+	    	<span class="spliter">|</span>
+	    	<a id="forgetPassword">后台管理系统</a>
+	    </div>
+	</div>
+	<script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		
+      	})
+      		//监听登录点击
+      		document.getElementById('login').addEventListener('tap',function(){
+      			plus.nativeUI.showWaiting( "登录中..." );
+				mui.ajax('https://sys.ibike365.cn/umb/webAppLogin',{
+					data:{
+						userName:document.getElementById('account').value,
+						password:document.getElementById('password').value
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'get',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						plus.nativeUI.closeWaiting();
+						if(data.success==1000){
+							mui.toast(data.msg);
+							mui.openWindow({
+								url:'main.html',
+								id:'main'
+							})
+							return;
+						}
+						mui.toast(data.msg)
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						if(type=='timeout'){
+							mui.toast('请求超时');
+							plus.nativeUI.closeWaiting();
+							return;
+						}
+					}
+				});
+      		})
+    </script>
+</body>
+</html>

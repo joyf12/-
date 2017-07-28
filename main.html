@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta http-equiv="Access-Control-Allow-Origin" content="">
+ 		<meta http-equiv="content-security-policy">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/iconfont.css"/>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=CpcFGrhdaBnn2ZYsk6I5CEbnNzToCGPq"></script>
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body style="background:#1A1613;">
+		<header class="mui-bar mui-bar-nav">
+			<h1 id="title" class="mui-title">首页</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div id="allmap" style="width:100%;height:200px;overflow:hidden;"></div>
+			<!--<div>
+				<a href="#">
+					<img src="https://thumbnail0.baidupcs.com/thumbnail/530b1b6cafd7fa6b19797d8136f0299b?fid=3642656684-250528-678444452085658&time=1500087600&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-WWExMEgG9%2bGbB9i5wmHJ4Bp7NaQ%3d&expires=8h&chkbd=0&chkv=0&dp-logid=4533410969976834699&dp-callid=0&size=c1138_u640&quality=90&vuk=3642656684&ft=image" style="width:100%;"/>
+				</a>
+			</div>-->
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="mana">
+					<a href="#"> 
+						<span class="mui-icon mui-icon-home"></span>
+						<div class="mui-media-body">站点管理</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="lock">
+					<a href="#">
+						<span class="mui-icon iconfont icon-suo"></span>
+						<div class="mui-media-body">伞锁管理</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<a href="#">
+						<span class="mui-icon iconfont icon-yhgl" id="user"></span>
+						<div class="mui-media-body">用户管理</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="umb">
+					<a href="#">
+						<span class="mui-icon iconfont icon-yusan"></span>
+						<div class="mui-media-body">雨伞管理</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="blacklist">
+					<a href="#">
+						<span class="mui-icon iconfont icon-heimingdan"></span>
+						<div class="mui-media-body">黑名单管理</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="qr">
+					<a href="#">
+						<span class="mui-icon iconfont icon-saoma2"></span>
+						<div class="mui-media-body">二维码扫描页面</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6" id="cs">
+					<a href="#">
+						<span class="mui-icon iconfont icon-saoma2"></span>
+						<div class="mui-media-body">测试页面</div>
+					</a>
+				</li>
+			</ul>
+
+
+
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8"> 
+			
+			mui.init();
+			mui.plusReady(function(){})
+			//地图
+			
+			var map = new BMap.Map("allmap");//实例化
+			var ggPoint = new BMap.Point(113.82954652684,22.800499424426);
+			map.centerAndZoom(ggPoint,15);
+			var geolocation = new BMap.Geolocation();//实例化
+			geolocation.getCurrentPosition(function(r){//获取当前位置信息
+				if(this.getStatus() == BMAP_STATUS_SUCCESS){
+					ggPoint = new BMap.Point(r.longitude,r.latitude);
+					var convertor = new BMap.Convertor();
+					ggPoint = JSON.stringify(ggPoint);
+					convertor.translate(ggPoint,1,5,function(data){
+						console.log(data);
+						if(data.status===0){
+							var marker = new BMap.Marker(data.points[0]);
+							map.addOverlay(marker);
+							var label = new BMap.Label('转换后的百度坐标（正确）',{offset:new BMap.Size(20,-10)});
+							marker.setLabel(label);//添加百度label
+							map.setCenter(data.points[0]);
+						}
+					});
+					var marker =new BMap.Marker(ggPoint);//创建标注
+					map.addOverlay(marker);//将标注添加到地图
+				}
+				else {
+					alert('failed'+this.getStatus());
+				}        
+			},{enableHighAccuracy: true})
+			
+//			map.centerAndZoom(ggPoint,15);
+//			map.addControl(new BMap.NavigationControl());
+//				
+//			var markgg = new BMap.Marker(ggPoint);
+//			map.addOverlay(markgg);
+//			alert('ppppppp');	
+//			var labelgg = new BMap.Label('未转换的GPS坐标',{offset:new BMap.Size(20,-10)});
+//			markgg.setLabel(labelgg);
+//					
+//			translateCallback = function (data){
+//				alert('ooooo')
+//				if(data.status === 0) {
+//				    var marker = new BMap.Marker(data.points[0]);
+//				    map.addOverlay(marker);
+//				    var label = new BMap.Label("转换后的百度坐标（正确）",{offset:new BMap.Size(20,-10)});
+//				    marker.setLabel(label); //添加百度label
+//				    map.setCenter(data.points[0]);
+//				    }
+//				 }
+//					
+//			setTimeout(function(){
+//				var convertor = new BMap.Convertor();
+//				var pointArr = [];
+//				pointArr.push(ggPoint);
+//				convertor.translate(pointArr,1,5,translateCallback);
+//			},1000)
+			//站点管理
+			document.getElementById('mana').addEventListener('tap',function(){
+				mui.openWindow({
+							url:'manage.html',
+							id:'manage'
+						})
+			});
+			//雨伞管理
+			document.getElementById('umb').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'umbmanage.html',
+					id:'umb'
+				})
+			})
+			
+			//用户管理
+			document.getElementById('user').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'userMana.html',
+					id:'user'
+				})
+			})
+			//锁管理
+			document.getElementById('lock').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'lock.html',
+					id:'lock'
+				})
+			})
+			//黑名单管理
+			document.getElementById('blacklist').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'blacklist.html',
+					id:'blacklist'
+				})
+			})
+			//二维码扫描页面
+			document.getElementById('qr').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'ma.html',
+					id:'qr'
+				})
+			})
+			//测试页面
+			document.getElementById('cs').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'scan.html',
+					id:'cs'
+				})
+			})
+		</script>
+	</body>
+
+</html>
